@@ -11,9 +11,10 @@ const config: Config = {
       'graytrans': '#00000030'
     },
     fontSize:{
-      'sml': '1.2rem',
-      '2xl': '1.5rem',
-      'title': '1.7rem',
+      'sml': '1.5rem',
+      '2xl': '1.75rem',
+      'title': '2rem',
+      'titlexl': '3rem',
     },
     extend: {
       backgroundImage: {
@@ -26,8 +27,11 @@ const config: Config = {
         '37': '3fr 7fr',
       },
       height:{
-        '100': '100px',
+        '100': '140px',
         'art': '300px',
+      },
+      spacing:{
+        'svg': 'calc(25vw - 64px)'
       },
       gridTemplateRows:{
         '82': '4fr 1fr',

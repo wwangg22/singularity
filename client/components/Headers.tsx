@@ -62,7 +62,7 @@ function Headers() {
             <h3 className="text-2xl text-right"><a className="cursor-pointer" href='/write'>write</a></h3>
             <h3 className="text-2xl pl-4"><button className="cursor-pointer" onClick={clicked()}>my profile</button></h3>
         </div>
-        <div className="grid grid-cols-4">
+        <div className="grid grid-cols-4 mt-3">
             <div></div>
             <div id = "minimenu" className="flex justify-left gap-3 text-sml">
                 <h2 className = {`${selected == 0 ? 'underline': ''} cursor-pointer`}>food</h2>
@@ -75,7 +75,6 @@ function Headers() {
     </div>
     {dropdown ? <Profile /> : null}
     <div className='h-100'>
-
     </div>
     </>
   )
