@@ -5,19 +5,19 @@ import Mainpage from "../components/Mainpage";
 import { NextPageWithLayout } from "./_app";
 import Profile from "../components/Profile";
 
-const index:NextPageWithLayout = () => {
+const Index:NextPageWithLayout = () => {
   return (
     <>
       <Mainpage />
     </>
   );
 }
-index.getLayout = function getLayout(index:ReactElement){
+Index.getLayout = function getLayout(index:ReactElement){
   return (
     <Layout>
       {index}
     </Layout>
   )
 }
-export default index;
+export default Index;
 

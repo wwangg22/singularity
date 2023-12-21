@@ -1,10 +1,11 @@
 import React from 'react'
 import Image from "next/image"
 import img from '../public/test.jpg'
+import Link from 'next/link'
 
 function Articles({title, author,date, id}: {title:string, author:string, date:string, id:string}) {
   return (
-    <a href ={ `/posts/${id}`}>
+    <Link href ={ `/posts/${id}`}>
         <div className = "w-full h-art outline outline-1 grid grid-cols-46">
 
                 <Image
@@ -23,7 +24,7 @@ function Articles({title, author,date, id}: {title:string, author:string, date:s
                 </div>
 
         </div>
-     </a>
+     </Link>
   )
 }
 

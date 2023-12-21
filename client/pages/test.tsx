@@ -3,12 +3,12 @@ import Layout from '../components/layout';
 import { NextPageWithLayout } from "./_app";
 import type {ReactElement} from 'react';
 
-const test:NextPageWithLayout = () => {
+const Test:NextPageWithLayout = () => {
     return (
         <div className = "h-[200vh]">heyyyy</div>
     );
 }
-test.getLayout = function getLayout(test:ReactElement){
+Test.getLayout = function getLayout(test:ReactElement){
 return (
     <Layout>
     {test}
@@ -16,4 +16,4 @@ return (
 )
 }
 
-export default test
+export default Test

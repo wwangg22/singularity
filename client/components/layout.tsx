@@ -1,9 +1,11 @@
 import Headers from "./Headers";
 
-export default function Layout({children}:any){
+export default function Layout({page, children}:any){
     return (
         <>
-            <Headers/>
+            <Headers
+                page={page}
+            />
             <main>{children}</main>
         </>
     )

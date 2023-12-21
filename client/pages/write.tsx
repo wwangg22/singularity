@@ -11,7 +11,7 @@ import ParagraphIcon from '@/components/ParagraphIcon';
 
 
 const regex = /(?<=[^\n])\n|\n(?=[^\n])|\n\n(?=\n)/
-const test:NextPageWithLayout = () => {
+const Test:NextPageWithLayout = () => {
 
     const [numparagraphs, setNumparagraphs] = useState(3);
     const [location, setLocation] = useState(0);
@@ -77,7 +77,7 @@ const test:NextPageWithLayout = () => {
     };
 
     const handleInput = () => {
-        const text = document.getElementById("testing2")?.innerText;
+        const text = (document.querySelector("#testing2") as HTMLElement).innerText;
         const lines = text?.split(regex).map(s => s === '\n' ? '' : s);
         var b = 0;
         console.log(JSON.stringify(text));
@@ -88,7 +88,6 @@ const test:NextPageWithLayout = () => {
         }
         else{
             for (const a of lines!){
-
                 if (dic[b] != undefined){
                     if (a != dic[b]){
                         console.log('hey')
@@ -106,9 +105,9 @@ const test:NextPageWithLayout = () => {
         dic = lines!;
     }
 
-    const click = () => {
-        console.log(String.raw(document.querySelector("#testing2")?.innerText))
-    }
+    // const click = () => {
+    //     console.log('clicked')
+    // }
     const flip = () =>{
         setIsMenuVisible(!isMenuVisible);
         flip45(document.getElementById('icon')!)
@@ -129,7 +128,7 @@ const test:NextPageWithLayout = () => {
                 <button className="w-full h-full z-10" onClick={flip}>
                     <Xicon/>
                 </button>
-                <div id='menubar' className={`absolute left-0 top-0 h-auto mx-auto grid grid-rows-5 gap-[20px] transition-all duration-1000 transform ${isMenuVisible ? 'translate-y-[64px] opacity-1' : '-translate-y-full opacity-0'}`}>
+                <div id='menubar' className={`w-full absolute left-0 top-0 h-auto mx-auto grid grid-rows-5 gap-[20px] transition-all duration-1000 transform ${isMenuVisible ? 'translate-y-[64px] opacity-1 pointer-events-auto' : '-translate-y-full opacity-0 pointer-events-none'}`}>
                     <button title="add photo">
                         <PhotoIcon/>
                     </button>
@@ -152,12 +151,11 @@ const test:NextPageWithLayout = () => {
                     <h3 className="text-titlexl outline-black border-b-[1px]">title</h3>
                     <div>text here</div>
                 </div>
-                
             </div>
         </>
     );
 }
-test.getLayout = function getLayout(test:ReactElement){
+Test.getLayout = function getLayout(test:ReactElement){
 return (
     <Layout>
     {test}
@@ -165,4 +163,4 @@ return (
 )
 }
 
-export default test
+export default Test

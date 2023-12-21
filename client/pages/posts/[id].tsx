@@ -4,7 +4,7 @@ import Layout from '@/components/layout';
 import { NextPageWithLayout } from "../_app";
 import type {ReactElement} from 'react';
 
-const index:NextPageWithLayout = () => {
+const Index:NextPageWithLayout = () => {
     const router = useRouter()
     //Post: {router.query.id}
     const sections = 5;
@@ -17,7 +17,7 @@ const index:NextPageWithLayout = () => {
     </div>
   )
 }
-index.getLayout = function getLayout(index:ReactElement){
+Index.getLayout = function getLayout(index:ReactElement){
     return (
         <Layout>
         {index}
@@ -25,4 +25,4 @@ index.getLayout = function getLayout(index:ReactElement){
     )
     }
 
-export default index;
+export default Index;
