@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import Layout from '../components/layout';
 import { NextPageWithLayout } from "./_app";
-import type {ReactElement} from 'react';
+import type {MouseEventHandler, ReactElement} from 'react';
 import Xicon from '@/components/XIcon';
 import PhotoIcon from '@/components/PhotoIcon';
 import VideoIcon from '@/components/VideoIcon';
@@ -29,6 +29,8 @@ const Test:NextPageWithLayout = () => {
         const testing2 = document.getElementById("testing2");
 
         testing2?.addEventListener('input', handleInput);
+
+
         // testing2?.addEventListener('propertychange', (e) => {
         //     //console.log('propchange',e);
         // })
@@ -43,12 +45,43 @@ const Test:NextPageWithLayout = () => {
         // });
         document.addEventListener('mousedown', handleOutsideClick);
         return () => {
-
             document.removeEventListener('mousedown', handleOutsideClick);
             testing2?.removeEventListener('input', handleInput);
         };
 
     },[])
+
+    const submitInput = (event:React.MouseEvent) =>{
+        const imageinput = document.getElementById("imageinput") as HTMLInputElement
+        imageinput.click();
+        event.preventDefault();
+    }
+
+    const submitForm = async (event:React.ChangeEvent) => {
+        event.preventDefault();
+        // const form = document.getElementById("imageform") as HTMLFormElement
+        // form.submit();
+        console.log('Upload function called');
+        const imageinput = document.getElementById("imageinput") as HTMLInputElement
+        const file = imageinput.files?.[0];
+        console.log('File selected:', file);
+
+        const {url} = await fetch("/api/url").then(res => res.json());
+        console.log(url)
+
+        await fetch(url, {
+            method: "PUT",
+            headers:{
+                "Content-Type": "multipart/form-data"
+            },
+            body:file
+        })
+
+        const imageUrl= url.split('?')[0];
+        console.log(imageUrl);
+
+
+    }
 
     const handleOutsideClick = (event: MouseEvent) => {
         console.log(event)
@@ -113,6 +146,16 @@ const Test:NextPageWithLayout = () => {
         flip45(document.getElementById('icon')!)
     }
 
+    const upload = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        // console.log('Upload function called');
+        // const imageinput = document.getElementById("imageinput") as HTMLInputElement
+        // const file = imageinput.files?.[0];
+        // console.log('File selected:', file);
+
+        // Handle file upload logic here
+    };
+
     const flip45 = (item:HTMLElement | null) => {
         if (item?.classList.contains("rotate-45")){
             item.classList.remove("rotate-45")
@@ -129,9 +172,12 @@ const Test:NextPageWithLayout = () => {
                     <Xicon/>
                 </button>
                 <div id='menubar' className={`w-full absolute left-0 top-0 h-auto mx-auto grid grid-rows-5 gap-[20px] transition-all duration-1000 transform ${isMenuVisible ? 'translate-y-[64px] opacity-1 pointer-events-auto' : '-translate-y-full opacity-0 pointer-events-none'}`}>
-                    <button title="add photo">
-                        <PhotoIcon/>
-                    </button>
+                    <form id="imageform" onSubmit={upload}>
+                    <input id="imageinput" type="file" accept="image/*" onChange={submitForm} hidden/>
+                        <button id="imagebutton" type="button" title="add photo" onClick={submitInput}>
+                            <PhotoIcon/>
+                        </button>
+                    </form>
                     <button title="add video">
                         <VideoIcon/>
                     </button>

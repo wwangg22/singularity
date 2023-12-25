@@ -42,6 +42,18 @@ function SettingComponent({name, type, selections, id}: {name:string, type:strin
         }
     }
 
+    const monitorsize = (kk:number) => {
+        return (event:React.KeyboardEvent) => {
+            const ele2 = document.querySelector(`[ur-mom='${kk}']`);
+            if ((event.key) === 'Backspace' ||  (event.key) === 'Delete'){
+            }
+            else if ((ele2 as HTMLElement).innerText.length > 34){
+                (ele2 as HTMLElement).innerText = (ele2 as HTMLElement).innerText.substring(0,35);
+                event.preventDefault();
+            }
+        }
+    }
+
   return (
     <div className = "w-full h-[75px] outline-none border-t-2 p-[5px] flex justify-between">
         <div className="my-auto text-title">{name}</div>
@@ -55,7 +67,11 @@ function SettingComponent({name, type, selections, id}: {name:string, type:strin
         {
             type == "enter" && 
             <div className='flex gap-[10px] enter'>
-                <label ur-mom={`${id}`} className='my-auto outline-none focus:border-b-2 text-title opacity-[0.5] translate-x-[48px] duration-[0.5s] ease-in-out' contentEditable={true} onFocus={appear(id)} onBlur = {disappear(id)}>
+                <label ur-mom={`${id}`} className='my-auto outline-none focus:border-b-2 text-title opacity-[0.5] translate-x-[48px] duration-[0.5s] ease-in-out z-10' 
+                contentEditable={true} 
+                onFocus={appear(id)} 
+                onBlur = {disappear(id)} 
+                onKeyDown={monitorsize(id)}>
                     {selections[0]}
                 </label>
                 <div className="my-auto outline outline-black outline-1 p-[5px] opacity-0 duration-[0.5s] ease-in-out"  data-name = {`${id}`}>
