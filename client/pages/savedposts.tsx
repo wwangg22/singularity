@@ -2,9 +2,17 @@ import React from 'react'
 import Layout from '../components/layout';
 import { NextPageWithLayout } from "./_app";
 import type {ReactElement} from 'react';
+import { useContext } from 'react';
 import Articles from '@/components/Articles';
+import { userContext } from '@/components/layout';
+import type { DataProps } from '@/components/types';
 
-const Test:NextPageWithLayout = () => {
+const Test:NextPageWithLayout<DataProps> = ({userdata}) => {
+    const { data, setData } = useContext(userContext);
+
+    if (userdata !== undefined) {
+        setData(userdata);
+      }
     return (
         <>
         <div className = "grid grid-rows-auto w-1/2 mx-auto gap-3 mt-5">
@@ -49,5 +57,8 @@ return (
     </Layout>
 )
 }
+
+export { default as getServerSideProps } from "@/components/login-flow/serverauth";
+
 
 export default Test

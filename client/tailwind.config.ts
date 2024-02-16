@@ -31,7 +31,8 @@ const config: Config = {
         'art': '300px',
       },
       spacing:{
-        'svg': 'calc(25vw - 64px)'
+        'svg': 'calc(25vw - 64px)',
+        'bbl': 'calc(25vw - 175px)'
       },
       gridTemplateRows:{
         '82': '4fr 1fr',
